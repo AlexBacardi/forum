@@ -5,11 +5,12 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\UpdateRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
+use App\Service\User\UserService;
 
 class UserController extends Controller
 {
+    public function __construct(private UserService $userService){}
+
     public function info(User $user)
     {
         $roles = User::getRoles();
@@ -26,11 +27,12 @@ class UserController extends Controller
     public function update(UpdateRequest $request, User $user)
     {
         $data = $request->validated();
-        if (isset($data['avatar'])) {
-            $data['avatar'] = Storage::disk('public')->put("/avatars/" . $user->name, $data['avatar']);
+        $user = $this->userService->update($data, $user);
+        if(!$user){
+            session(['error' => 'Ошибка обновления данных']);
+            return back();
         }
-        $user->update($data);
-
+        session(['message' => 'Данные успешно обновлены']);
         return redirect()->route('users.info', $user->id);
     }
 }
