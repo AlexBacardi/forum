@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('user.layouts.profile')
 @section('title', 'Редактирование' )
 @section('profile')
     <div class="col-12 col-lg-9">
@@ -81,7 +81,7 @@
                         <label class="mb-0 ms-1 form-label fw-medium">{{__('Аватар')}}</label>
                     </div>
                     <div class="col-8 col-lg-6">
-                        <input type="file" class="form-control @error('file') is-invalid @enderror" name="avatar" placeholder="Укажите свой сайт" value="{{ $user->web_site }}">
+                        <input type="file" class="form-control @error('file') is-invalid @enderror" name="avatar" value="">
                         @error('avatar')
                             <div class="text-danger">{{ $message }}</div>
                         @enderror
