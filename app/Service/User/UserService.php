@@ -2,7 +2,6 @@
 
 namespace App\Service\User;
 
-use Exception;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 

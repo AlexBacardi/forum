@@ -11,6 +11,9 @@
             </div>
             <div class="row">
                 <div class="col-12 col-md-8">
+                    @if(count($categories) == 0)
+                        <h4>Категорий нет</h4>
+                    @else
                     <table class="table table-hover table-responsive">
                         <thead>
                           <tr>
@@ -20,13 +23,16 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>@mdo</td>
-                          </tr>
+                            @foreach ($categories as $category)
+                                <tr>
+                                <th scope="row">{{$category->id}}</th>
+                                <td>{{$category->title}}</td>
+                                <td>@mdo</td>
+                                </tr>
+                            @endforeach
                         </tbody>
-                      </table>
+                    </table>
+                    @endif
                 </div>
             </div>
         </div>

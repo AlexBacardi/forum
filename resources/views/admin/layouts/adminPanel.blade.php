@@ -2,6 +2,18 @@
 @section('title', 'Панель Администратора')
 @section('content')
     <section>
+        <div class="row justify-content-center">
+            <div class="col-10 col-md-6">
+                @if ($message = session()->pull('message'))
+                    <div class="alert alert-success mb-3 text-center">{{ $message }}</div>
+                @endif
+                @if ($message = session()->pull('error'))
+                    <div class="alert alert-danger mb-3 text-center">{{ $message }}</div>
+                @endif
+            </div>
+        </div>
+    </section>
+    <section>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6 offset-md-3 offset-lg-0 col-lg-3 mb-3">
