@@ -8,7 +8,7 @@
                     <div class="border rounded text-center py-4">
                         <img src="{{ asset('icons/p-icon-1.png') }}" alt="">
                         <p class="fs-5 fw-medium mt-2"><a href="#" class="link-underline link-underline-opacity-0 text-dark">{{ __('Пользователи') }}</a></p>
-                        <span class="badge bg-secondary fs-6">{{ __('10') }}</span>
+                        <span class="badge bg-secondary fs-6">{{ $data['cntUser'] }}</span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4 mb-3">

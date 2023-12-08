@@ -1,5 +1,7 @@
+@push('css')
+    <link rel="stylesheet" href="{{asset('css/plugins/fontawesome-free/css/all.min.css')}}">
+@endpush
 @extends('layouts.main')
-@section('title', 'Панель Администратора')
 @section('content')
     <section>
         <div class="row justify-content-center">

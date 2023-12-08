@@ -22,4 +22,20 @@ class CategoryService
         }
         return true;
     }
+
+    public function update($data, $category)
+    {
+        try{
+            DB::beginTransaction();
+            if(isset($data['preview_img'])) {
+                $data['preview_img'] = Storage::disk('public')->put("/category/icons/" . $data['title'], $data['preview_img']);
+            }
+            $category->update($data);
+            DB::commit();
+        } catch(\Exception $exception){
+            DB::rollBack();
+            return false;
+        }
+        return $category;
+    }
 }
