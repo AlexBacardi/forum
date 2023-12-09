@@ -2,9 +2,10 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\User\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware('auth')->controller(AdminController::class)->group(function (){
+Route::prefix('admin')->middleware('auth')->controller(AdminController::class)->group(function() {
 
     Route::get('/', 'index')->name('admin.index');
 
@@ -24,5 +25,11 @@ Route::prefix('admin')->middleware('auth')->controller(AdminController::class)->
 
         Route::delete('/{category}', 'delete')->name('admin.categories.delete');
 
+    });
+
+    Route::prefix('users')->controller(AdminUserController::class)->group(function() {
+
+        Route::get('/', 'index')->name('admin.users.index');
+        
     });
 });

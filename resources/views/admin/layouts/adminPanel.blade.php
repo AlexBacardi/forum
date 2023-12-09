@@ -29,7 +29,7 @@
                                     <a href="{{ route('admin.categories.index')}}" class="btn btn-outline-secondary w-75">{{ __('Категории') }}</a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="#" class="btn btn-outline-secondary w-75">{{ __('Пользователи') }}</a>
+                                    <a href="{{ route('admin.users.index')}}" class="btn btn-outline-secondary w-75">{{ __('Пользователи') }}</a>
                                 </li>
                                 <li class="mb-3">
                                     <a href="#" class="btn btn-outline-secondary w-75">{{ __('Темы') }}</a>

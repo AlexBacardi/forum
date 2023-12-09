@@ -75,7 +75,7 @@
                                                         <div class="text-end">
                                                             <a href="#">{{ __('Eh Jewel') }}</a>
                                                             <img class="avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2"
-                                                                src="{{ asset('icon/avatar.jpg') }}">
+                                                                src="{{ asset('icons/avatar.jpg') }}">
                                                         </div>
                                                     </div>
                                                 </li>
