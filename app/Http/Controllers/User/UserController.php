@@ -9,7 +9,7 @@ use App\Service\User\UserService;
 
 class UserController extends Controller
 {
-    public function __construct(private UserService $userService){}
+    public function __construct(protected UserService $userService){}
 
     public function info(User $user)
     {

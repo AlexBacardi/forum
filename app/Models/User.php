@@ -29,6 +29,7 @@ class User extends Authenticatable
         'avatar', 'gender',
         'city', 'info',
         'web_site',
+        'role',
     ];
 
     /**
@@ -59,5 +60,10 @@ class User extends Authenticatable
             self::ROLE_ADMIN => 'Администратор',
             self::ROLE_USER => 'Пользователь',
         ];
+    }
+
+    public function isAdmin()
+    {
+        return $this->role === self::ROLE_ADMIN;
     }
 }

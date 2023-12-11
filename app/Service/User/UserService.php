@@ -2,11 +2,25 @@
 
 namespace App\Service\User;
 
+use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class UserService
 {
+    public function create($data)
+    {
+        try{
+            DB::beginTransaction();
+            User::firstOrCreate($data);
+            DB::commit();
+        } catch(\Exception $exception){
+            DB::rollBack();
+            return false;
+        }
+        return true;
+    }
+
     public function update($data, $user)
     {
         try{

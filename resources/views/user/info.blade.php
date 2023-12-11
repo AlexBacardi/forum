@@ -47,7 +47,7 @@
                     <p class="fw-medium m-0 ps-2">Пол</p>
                 </div>
                 <div class="col-6">
-                    <p class="m-0 ps-2">{{$user->gender? $gender[$user->gender] : ''}}</p>
+                    <p class="m-0 ps-2">{{$gender[$user->gender]?? ''}}</p>
                 </div>
             </div>
             <div class="row mb-3">

@@ -58,9 +58,11 @@
                                             class="btn btn-outline-secondary w-75">{{ __('Редактировать') }}</a>
                                     </li>
                                 @endcan
-                                <li class="mb-3">
-                                    <a href="{{route('admin.index')}}" class="btn btn-outline-secondary w-75">{{ __('Управление') }}</a>
-                                </li>
+                                @if (auth()->user()->isAdmin())
+                                    <li class="mb-3">
+                                        <a href="{{route('admin.index')}}" class="btn btn-outline-secondary w-75">{{ __('Управление') }}</a>
+                                    </li>
+                                @endif
                             </ul>
                         </div>
                     </div>
