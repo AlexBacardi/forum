@@ -39,5 +39,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminControlle
 
         Route::get('/{user}/edit', 'edit')->name('admin.users.edit');
 
+        Route::patch('/{user}', 'update')->name('admin.users.update');
+
     });
 });

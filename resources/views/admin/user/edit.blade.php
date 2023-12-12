@@ -8,7 +8,7 @@
                     <h4 class="me-2">{{__('Редактирование пользователя')}}</h4>
                 </div>
             </div>
-            <form action="" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('admin.users.update', $user->id) }}" method="POST">
                 @csrf
                 @method('patch')
                 <div class="row mb-3">

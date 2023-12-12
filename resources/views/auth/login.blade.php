@@ -8,6 +8,9 @@
                 <div class="card-header">{{ __('Вход') }}</div>
 
                 <div class="card-body">
+                    @if ($message = session()->pull('message'))
+                        <div class="alert alert-danger mb-3 text-center">{{ $message }}</div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
 

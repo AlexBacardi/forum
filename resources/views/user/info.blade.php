@@ -82,6 +82,16 @@
                     <p class="m-0 ps-2">{{$user->created_at->diffForHumans()}}</p>
                 </div>
             </div>
+            @if (!status($user->banned_until))
+                <div class="row mb-3">
+                    <div class="col-6 col-md-3">
+                        <p class="fw-medium m-0 ps-2">Статус</p>
+                    </div>
+                    <div class="col-6">
+                        <p class="m-0 ps-2 text-danger">Заблокирован</p>
+                    </div>
+                </div>
+            @endif
         </div>
     </div>
 @endsection

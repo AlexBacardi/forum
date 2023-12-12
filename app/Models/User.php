@@ -29,6 +29,7 @@ class User extends Authenticatable
         'avatar', 'gender',
         'city', 'info',
         'web_site',
+        'banned_until',
         'role',
     ];
 
@@ -50,7 +51,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
-        'anned_until' => 'datetime',
+        'banned_until' => 'datetime',
     ];
 
 

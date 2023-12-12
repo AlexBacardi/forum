@@ -58,7 +58,7 @@
                                             class="btn btn-outline-secondary w-75">{{ __('Редактировать') }}</a>
                                     </li>
                                 @endcan
-                                @if (auth()->user()->isAdmin())
+                                @if (auth()->user()->isAdmin() and auth()->user()->id == $user->id)
                                     <li class="mb-3">
                                         <a href="{{route('admin.index')}}" class="btn btn-outline-secondary w-75">{{ __('Управление') }}</a>
                                     </li>

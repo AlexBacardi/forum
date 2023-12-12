@@ -2,14 +2,19 @@
 
 namespace App\Http\Controllers\Admin\User;
 
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\User\StoreRequest;
+use App\Http\Requests\Admin\User\UpdateRequest;
 use App\Models\User;
 use App\Service\User\UserService;
 use Illuminate\Support\Facades\Hash;
 
-class AdminUserController extends UserController
+class AdminUserController extends Controller
 {
+    public function __construct(private UserService $userService)
+    {
+
+    }
     public function index()
     {
         $users = User::all();
@@ -27,7 +32,7 @@ class AdminUserController extends UserController
     {
         $data = $request->validated();
         $data['password'] = Hash::make($data['password']);
-        if(!$this->userService->create($data)) {
+        if (!$this->userService->create($data)) {
             session(['error' => 'Ошибка пользователь не создан']);
             return back();
         }
@@ -48,5 +53,10 @@ class AdminUserController extends UserController
         return view('admin.user.edit', compact('user', 'roles'));
     }
 
-
+    public function update(UpdateRequest $request, User $user)
+    {
+        $data = $request->validated();
+        $user->update($data);
+        return redirect()->route('admin.users.show', $user->id);
+    }
 }

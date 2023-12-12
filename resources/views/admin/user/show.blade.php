@@ -6,7 +6,7 @@
             <div class="row mb-4">
                 <div class="col-12 d-flex align-items-center">
                     <h4 class="me-2">{{ $user->name }}</h4>
-                    <a href="" class="text-success"><i class="fas fa-pencil-alt"></i></a>
+                    <a href="{{ route('admin.users.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
                     <form action="" method="post">
                         @csrf
                         @method('delete')
@@ -78,6 +78,14 @@
                 </div>
                 <div class="col-6">
                     <p class="m-0">{{ $roles[$user->role] }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 col-md-3">
+                    <p class="fw-medium m-0 ps-2">{{__('Статус')}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0 text-{{status($user->banned_until)? 'success' : 'danger'}}">{{status($user->banned_until)? 'Активен' : 'Заблокирован до ' . $user->banned_until->format('d-m-Y')}}</p>
                 </div>
             </div>
         </div>
