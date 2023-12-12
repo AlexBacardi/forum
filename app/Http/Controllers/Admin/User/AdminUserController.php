@@ -17,7 +17,7 @@ class AdminUserController extends Controller
     }
     public function index()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         $roles = User::getRoles();
         return view('admin.user.index', compact('users', 'roles'));
     }
@@ -58,5 +58,12 @@ class AdminUserController extends Controller
         $data = $request->validated();
         $user->update($data);
         return redirect()->route('admin.users.show', $user->id);
+    }
+
+    public function delete(User $user)
+    {
+        $user->delete();
+        session(['message' => 'Пользователь успешно удален']);
+        return redirect()->route('admin.users.index');
     }
 }

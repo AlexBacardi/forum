@@ -35,7 +35,7 @@
                                     <td class="text-end"><a href="{{ route('admin.users.show', $user->id) }}" class="text-primary"><i class="far fa-eye"></i></a></td>
                                     <td class="text-center"><a href="{{ route('admin.users.edit', $user->id) }}" class="text-success"><i class="fas fa-pen"></i></a></td>
                                     <td>
-                                        <form action="#" method="post">
+                                        <form action={{ route('admin.users.delete', $user->id) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="submit" class="border-0 bg-transparent">
@@ -47,6 +47,12 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    {{ $users->links() }}
                 </div>
             </div>
         </div>

@@ -41,5 +41,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminControlle
 
         Route::patch('/{user}', 'update')->name('admin.users.update');
 
+        Route::delete('/{user}', 'delete')->name('admin.users.delete');
+
     });
 });

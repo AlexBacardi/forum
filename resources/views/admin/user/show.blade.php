@@ -7,7 +7,7 @@
                 <div class="col-12 d-flex align-items-center">
                     <h4 class="me-2">{{ $user->name }}</h4>
                     <a href="{{ route('admin.users.edit', $user->id) }}" class="text-success"><i class="fas fa-pencil-alt"></i></a>
-                    <form action="" method="post">
+                    <form action="{{ route('admin.users.delete', $user->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="border-0 bg-transparent">
@@ -78,6 +78,14 @@
                 </div>
                 <div class="col-6">
                     <p class="m-0">{{ $roles[$user->role] }}</p>
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-6 col-md-3">
+                    <p class="fw-medium m-0 ps-2">{{__('Дата регистрации')}}</p>
+                </div>
+                <div class="col-6">
+                    <p class="m-0">{{ $user->created_at->format('d-m-Y') }}г.</p>
                 </div>
             </div>
             <div class="row mb-3">

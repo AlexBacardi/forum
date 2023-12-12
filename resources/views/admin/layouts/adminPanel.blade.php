@@ -1,6 +1,9 @@
 @push('css')
     <link rel="stylesheet" href="{{asset('css/plugins/fontawesome-free/css/all.min.css')}}">
 @endpush
+@push('cssMain')
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+@endpush
 @extends('layouts.main')
 @section('content')
     <section>
