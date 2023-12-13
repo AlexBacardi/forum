@@ -42,14 +42,14 @@
                                         class="btn btn-outline-secondary w-75">{{ __('Профиль') }}</a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="#" class="btn btn-outline-secondary w-75">{{ __('Темы') }}</a>
+                                    <a href="{{ route('users.topics.index', $user->id)}}" class="btn btn-outline-secondary w-75">{{ __('Темы') }}</a>
                                 </li>
                                 <li class="mb-3">
-                                    <a href="" class="btn btn-outline-secondary w-75">{{ __('Ответы') }}</a>
+                                    <a href="#" class="btn btn-outline-secondary w-75">{{ __('Ответы') }}</a>
                                 </li>
                                 @can('create', $user)
                                     <li class="mb-3">
-                                        <a href="" class="btn btn-outline-secondary w-75">{{ __('Создать тему') }}</a>
+                                        <a href="{{ route('users.topics.create', $user->id)}}" class="btn btn-outline-secondary w-75">{{ __('Создать тему') }}</a>
                                     </li>
                                 @endcan
                                 @can('update', $user)
