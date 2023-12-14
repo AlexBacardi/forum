@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User\Topic;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\User\Topic\StoreRequest;
 use App\Models\Category;
+use App\Models\Topic;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,9 @@ class TopicController extends Controller
 {
     public function index(User $user)
     {
-        return view('user.topic.index', compact('user'));
+        $topics = $user->topics;
+        $isPublished = Topic::getStatusPublished();
+        return view('user.topic.index', compact('user', 'isPublished', 'topics'));
     }
 
     public function create(User $user)
@@ -25,6 +28,7 @@ class TopicController extends Controller
     {
         $data = $request->validated();
         $data['user_id'] = auth()->user()->id;
-        dd($data);
+        Topic::firstOrCreate($data);
+        return redirect()->route('users.topics.index', auth()->user()->id);
     }
 }

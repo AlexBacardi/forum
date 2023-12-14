@@ -18,6 +18,7 @@ return new class extends Migration
             $table->foreignId('user_id')->index()->constrained('users');
             $table->foreignId('category_id')->index()->constrained('categories');
             $table->boolean('is_published')->default(0);
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
 

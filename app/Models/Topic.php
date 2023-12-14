@@ -11,6 +11,10 @@ class Topic extends Model
     use HasFactory;
     use SoftDeletes;
 
+    const STATUS_PUBLISHED = 1;
+
+    const STATUS_UNPUBLISHED = 0;
+
     protected $table = 'topics';
 
     protected $fillable = [
@@ -18,5 +22,30 @@ class Topic extends Model
         'content',
         'category_id',
         'user_id',
+        'is_published',
     ];
+
+    protected $casts = [
+        'published_at' => 'datetime',
+    ];
+
+
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'categiry_id', 'id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id', 'id');
+    }
+
+    public static function getStatusPublished()
+    {
+        return [
+            self::STATUS_PUBLISHED => 'Опубликованно',
+            self::STATUS_UNPUBLISHED => 'Неопубликованно',
+        ];
+    }
 }

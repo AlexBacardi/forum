@@ -18,4 +18,9 @@ class Category extends Model
         'descr',
         'preview_img',
     ];
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class, 'category_id', 'id');
+    }
 }

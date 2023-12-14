@@ -7,8 +7,10 @@
         <p class="mb-0 ms-md-2 fs-5">{{__('Тогда задайте свой вопрос')}}</p>
     </div>
     <div class="col-md-4 col-xl-5 text-center text-xl-end">
-        <form action="#" method="POST">
-            <button type="submit" class="btn btn-outline-secondary btn-lg">{{__('Задать вопрос')}}</button>
-        </form>
+        @if (auth()->check())
+            <a href="{{ route('users.topics.create', auth()->user()->id )}}" class="btn btn-outline-secondary btn-lg">{{__('Задать вопрос')}}</a>
+        @else
+            <a href="{{ route('login')}}" class="btn btn-outline-secondary btn-lg">{{__('Задать вопрос')}}</a>
+        @endif
     </div>
 </div>

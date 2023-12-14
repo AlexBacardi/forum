@@ -29,90 +29,33 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="border border-top-0">
-                        <div class="d-flex p-3">
-                            <div class="col-12 col-md-7 p-2">
-                                <span class="fw-medium ms-2">{{ __('Название темы №1') }}</span>
-                            </div>
-                            <div class="col-7 col-md-5 p-2">
-                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                    <li class="me-auto">
-                                        {{ __('10') }}
-                                    </li>
-                                    <li class="text-wrap w-50">
-                                        {{ __('Опубликовано') }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="border border-top-0">
-                        <div class="d-flex p-3">
-                            <div class="col-12 col-md-7 p-2">
-                                <span class="fw-medium ms-2">{{ __('Название темы №2') }}</span>
-                            </div>
-                            <div class="col-7 col-md-5 p-2">
-                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                    <li class="me-auto">
-                                        {{ __('10') }}
-                                    </li>
-                                    <li class="text-wrap w-50">
-                                        {{ __('Опубликовано') }}
-                                    </li>
-                                </ul>
+            @if (count($topics) == 0)
+                <h4 class="mt-3">Вы не создали не одной темы </h4>
+            @else
+                @foreach ($topics as $topic)
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="border border-top-0">
+                                <div class="d-flex p-3">
+                                    <div class="col-12 col-md-7 p-2">
+                                        <a href="#" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                    </div>
+                                    <div class="col-7 col-md-5 p-2">
+                                        <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
+                                            <li class="me-auto">
+                                                {{ __('10') }}
+                                            </li>
+                                            <li class="text-wrap w-50 text-{{$topic->is_published? 'success' : 'danger'}}">
+                                                {{ $isPublished[$topic->is_published] }}
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="border border-top-0">
-                        <div class="d-flex p-3">
-                            <div class="col-12 col-md-7 p-2">
-                                <span class="fw-medium ms-2">{{ __('Название темы №3') }}</span>
-                            </div>
-                            <div class="col-7 col-md-5 p-2">
-                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                    <li class="me-auto">
-                                        {{ __('10') }}
-                                    </li>
-                                    <li class="text-wrap w-50">
-                                        {{ __(' Не Опубликовано') }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="border border-top-0">
-                        <div class="d-flex p-3">
-                            <div class="col-12 col-md-7 p-2">
-                                <span class="fw-medium ms-2">{{ __('Название темы №4') }}</span>
-                            </div>
-                            <div class="col-7 col-md-5 p-2">
-                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                    <li class="me-auto">
-                                        {{ __('10') }}
-                                    </li>
-                                    <li class="text-wrap w-50">
-                                        {{ __('Опубликовано') }}
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                @endforeach
+            @endif
         </div>
     </div>
 @endsection

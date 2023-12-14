@@ -67,4 +67,9 @@ class User extends Authenticatable
     {
         return $this->role === self::ROLE_ADMIN;
     }
+
+    public function topics()
+    {
+        return $this->hasMany(Topic::class, 'user_id', 'id');
+    }
 }
