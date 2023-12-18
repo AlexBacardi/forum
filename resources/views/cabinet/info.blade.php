@@ -1,4 +1,4 @@
-@extends('user.layouts.profile')
+@extends('cabinet.layouts.profile')
 @section('title', 'Профиль')
 @section('profile')
     <div class="col-12 col-lg-9">
@@ -15,7 +15,7 @@
                     <div class="border rounded text-center py-4">
                         <img src="{{ asset('icons/p-icon-2.png') }}" alt="">
                         <p class="fs-5 fw-medium mt-2">{{ __('Созданые темы') }}</p>
-                        <span class="badge bg-secondary fs-6">{{ __('30') }}</span>
+                        <span class="badge bg-secondary fs-6">{{ $data['cntTopics']}}</span>
                     </div>
                 </div>
                 <div class="col-sm-12 col-md-4 mb-3">

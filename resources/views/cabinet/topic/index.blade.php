@@ -1,4 +1,4 @@
-@extends('user.layouts.profile')
+@extends('cabinet.layouts.profile')
 @section('title', 'Просмотр тем')
 @section('profile')
     <div class="col-12 col-lg-9">

@@ -1,4 +1,4 @@
-@extends('user.layouts.profile')
+@extends('cabinet.layouts.profile')
 @section('title', 'Созданые темы')
 @section('profile')
     <div class="col-12 col-lg-9">
@@ -30,7 +30,7 @@
                     </div>
                     <div class="row mt-3 align-items-center">
                         <div class="col-4 col-md-2">
-                            <label class="mb-0 ms-1 form-label fw-medium">{{ __('Категория') }}</label>
+                            <label class="mb-0 ms-1 form-label fw-medium">{{ __('Категория форума') }}</label>
                         </div>
                         <div class="col-8 col-lg-6">
                             <select class="form-select" name="category_id">

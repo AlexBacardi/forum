@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\User\Topic\TopicController;
-use App\Http\Controllers\User\UserController;
+use App\Http\Controllers\Cabinet\ProfileController;
+use App\Http\Controllers\Cabinet\Topic\TopicController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::prefix('users')->controller(UserController::class)->middleware('auth')->group(function () {
+Route::prefix('cabinet')->controller(ProfileController::class)->middleware('auth')->group(function () {
 
     Route::get('/{user}', 'info')->name('users.info');
 
