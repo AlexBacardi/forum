@@ -23,4 +23,9 @@ class Category extends Model
     {
         return $this->hasMany(Topic::class, 'category_id', 'id');
     }
+
+    public function topicsOrderDesc()
+    {
+        return $this->topics()->latest('created_at');
+    }
 }

@@ -12,6 +12,8 @@ class IndexController extends Controller
     public function __invoke()
     {
         $categories = Category::all();
+        //dd($categories);
+        // $data['cntCatTopic']
         return view('main.index', compact('categories'));
     }
 }

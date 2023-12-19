@@ -52,7 +52,7 @@
                                                 <img src="{{ asset('storage/' . $category->preview_img)}}" alt="">
                                             </div>
                                             <div class="me-auto ms-md-3">
-                                                <a href="#" class="nav-link">
+                                                <a href="{{route('categorioes.show', $category->id )}}" class="nav-link">
                                                     <p class="fs-4 mb-0">{{ $category->title }}</p>
                                                 </a>
                                                 <p class="mb-0 fs-6">{{ $category->descr }}</p>
@@ -62,7 +62,7 @@
                                             <ul
                                                 class="d-md-flex d-none justify-content-around align-items-center p-0 list-unstyled">
                                                 <li>
-                                                    {{ __('10') }}
+                                                    {{ $category->topics->count() }}
                                                 </li>
                                                 <li>
                                                     {{ __('34') }}
