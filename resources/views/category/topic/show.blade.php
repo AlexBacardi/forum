@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <nav class="ms-2 ms-lg-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb py-2 mb-0">
-                            <li class="breadcrumb-item"><a href="{{ route('main.index')}}">{{__('Главная')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('categories.index')}}">{{__('Главная')}}</a></li>
                             <li class="breadcrumb-item"><a href="{{ route('categorioes.show', $category->id) }}">{{ $category->title }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $topic->title }}</li>
                         </ol>
@@ -51,9 +51,10 @@
                     </div>
                     <div class="row mb-5">
                         <div class="col-12">
-                            <form class="pb-2" action="#" method="POST">
+                            <form class="pb-2" action="{{ route('categories.topics.comments.store', ['category' => $category->id, 'topic' => $topic->id])}}" method="POST">
+                                @csrf
                                 <label class="fs-5 ms-3 mb-3">Комментарий</label>
-                                <textarea class="form-control mb-3" name="comment" cols="30" rows="3"></textarea>
+                                <textarea class="form-control mb-3" name="message" cols="30" rows="3"></textarea>
                                 <button class="btn btn-outline-secondary" type="submit">Ответить</button>
                             </form>
                         </div>
@@ -64,110 +65,34 @@
                             <hr>
                         </div>
                     </div>
-                    <div class="comments">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex p-2 p-md-2 align-items-center">
-                                    <div class="me-3">
-                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                    </div>
-                                    <div>
-                                        <a href="#" class="nav-link fs-6">{{__('Eh Jewel')}}</a>
-                                        <div class=" d-flex lign-items-center mt-1 mt-md-2">
-                                            <div class="ms-1">
-                                                <i class="far fa-calendar" style="color: #b8b799;"></i>
+                    @foreach ($comments as $comment)
+                        <div class="comments">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="d-flex p-2 p-md-2 align-items-center">
+                                        <div class="me-3">
+                                            <img class="avatar avatar-32 avatar-md-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('icons/avatar.jpg') }}">
+                                        </div>
+                                        <div>
+                                            <a href="#" class="nav-link fs-6">{{ $comment->user->name}}</a>
+                                            <div class=" d-flex lign-items-center mt-1 mt-md-2">
+                                                <div class="ms-1">
+                                                    <i class="far fa-calendar" style="color: #b8b799;"></i>
+                                                </div>
+                                                <p class="ms-2 mb-0 fs-6 text-muted">{{$comment->created_at->isoFormat('Do MMMM HH:mm')}}</p>
                                             </div>
-                                            <p class="ms-2 mb-0 fs-6 text-muted">January 16 at 10:32 PM</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 mb-5">
-                                <p class="p-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe veritatis nulla necessitatibus temporibus fugit assumenda dignissimos enim voluptatum. Odio, sunt!</p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="comments">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex p-2 p-md-2 align-items-center">
-                                    <div class="me-3">
-                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                    </div>
-                                    <div>
-                                        <a href="#" class="nav-link fs-6">{{__('Eh Jewel')}}</a>
-                                        <div class=" d-flex lign-items-center mt-1 mt-md-2">
-                                            <div class="ms-1">
-                                                <i class="far fa-calendar" style="color: #b8b799;"></i>
-                                            </div>
-                                            <p class="ms-2 mb-0 fs-6 text-muted">January 16 at 10:32 PM</p>
-                                        </div>
-                                    </div>
+                            <div class="row">
+                                <div class="col-12 mb-5">
+                                    <p class="p-2 mb-0">{{$comment->message}}</p>
                                 </div>
+                                <hr>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 mb-5">
-                                <p class="p-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe veritatis nulla necessitatibus temporibus fugit assumenda dignissimos enim voluptatum. Odio, sunt!</p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="comments">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex p-2 p-md-2 align-items-center">
-                                    <div class="me-3">
-                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                    </div>
-                                    <div>
-                                        <a href="#" class="nav-link fs-6">{{__('Eh Jewel')}}</a>
-                                        <div class=" d-flex lign-items-center mt-1 mt-md-2">
-                                            <div class="ms-1">
-                                                <i class="far fa-calendar" style="color: #b8b799;"></i>
-                                            </div>
-                                            <p class="ms-2 mb-0 fs-6 text-muted">January 16 at 10:32 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 mb-5">
-                                <p class="p-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe veritatis nulla necessitatibus temporibus fugit assumenda dignissimos enim voluptatum. Odio, sunt!</p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="comments">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="d-flex p-2 p-md-2 align-items-center">
-                                    <div class="me-3">
-                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                    </div>
-                                    <div>
-                                        <a href="#" class="nav-link fs-6">{{__('Eh Jewel')}}</a>
-                                        <div class=" d-flex lign-items-center mt-1 mt-md-2">
-                                            <div class="ms-1">
-                                                <i class="far fa-calendar" style="color: #b8b799;"></i>
-                                            </div>
-                                            <p class="ms-2 mb-0 fs-6 text-muted">January 16 at 10:32 PM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12 mb-5">
-                                <p class="p-2 mb-0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe veritatis nulla necessitatibus temporibus fugit assumenda dignissimos enim voluptatum. Odio, sunt!</p>
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
                 <div class="col-lg-3 d-none d-lg-block">
                     <div class="sidebar">

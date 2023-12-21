@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Category\Topoc;
+namespace App\Http\Controllers\Category\Topic;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
@@ -11,6 +11,8 @@ class TopicController extends Controller
 {
     public function show(Category $category, Topic $topic)
     {
-        return view('category.topic.show', compact('category', 'topic'));
+        $comments  = $topic->comments;
+        //dd($topic->commentsOrderDesc());
+        return view('category.topic.show', compact('category', 'topic', 'comments'));
     }
 }

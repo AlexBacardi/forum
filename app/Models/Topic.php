@@ -48,4 +48,14 @@ class Topic extends Model
             self::STATUS_UNPUBLISHED => 'Неопубликованно',
         ];
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class, 'topic_id', 'id');
+    }
+
+    public function latestComment() {
+
+        return $this->comments->last();
+    }
 }

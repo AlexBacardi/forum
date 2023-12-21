@@ -1,8 +1,8 @@
 <?php
 
 use App\Http\Controllers\Category\CategoryController;
-use App\Http\Controllers\Category\Topoc\TopicController;
-use App\Http\Controllers\Main\IndexController;
+use App\Http\Controllers\Category\Topic\Comment\CommentController;
+use App\Http\Controllers\Category\Topic\TopicController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,12 +16,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('layouts.main');
-// });
-
-Route::get('/', IndexController::class)->name('main.index');
+Route::get('/', [CategoryController::class, 'index'])->name('categories.index');
 
 Route::prefix('categories')->controller(CategoryController::class)->group(function(){
 
@@ -31,6 +26,11 @@ Route::prefix('categories')->controller(CategoryController::class)->group(functi
 
         Route::get('/{topic}', 'show')->name('categories.topics.show')->scopeBindings();
 
+        Route::prefix('/{topic}')->controller(CommentController::class)->group(function(){
+
+            Route::post('/', 'store')->name('categories.topics.comments.store')->scopeBindings();
+
+        });
     });
 });
 

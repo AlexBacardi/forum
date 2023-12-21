@@ -65,7 +65,7 @@
                                                     {{ $category->topics->count() }}
                                                 </li>
                                                 <li>
-                                                    {{ __('34') }}
+                                                    {{ $cntCommetns[$category->id]}}
                                                 </li>
                                                 <li>
                                                     <div>

@@ -6,7 +6,7 @@
                 <div class="col-12">
                     <nav class="ms-2 ms-lg-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb py-2 mb-0">
-                            <li class="breadcrumb-item"><a href="{{ route('main.index')}}">{{ __('Главная') }}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('categories.index')}}">{{ __('Главная') }}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ __('Профиль') }}</li>
                         </ol>
                     </nav>

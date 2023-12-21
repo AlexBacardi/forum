@@ -7,7 +7,7 @@
                 <div class="col-12">
                     <nav class="ms-2 ms-lg-5" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
                         <ol class="breadcrumb py-2 mb-0">
-                            <li class="breadcrumb-item"><a href="{{ route('main.index') }}">{{__('Главная')}}</a></li>
+                            <li class="breadcrumb-item"><a href="{{ route('categories.index') }}">{{__('Главная')}}</a></li>
                             <li class="breadcrumb-item active" aria-current="page">{{ $category->title}}</li>
                         </ol>
                     </nav>
@@ -56,7 +56,7 @@
                                     <div class="col-7">
                                         <ul class="d-md-flex d-none justify-content-around p-0 list-unstyled">
                                             <li class="py-4">
-                                                {{__('10')}}
+                                                {{ $topic->comments->count()}}
                                             </li>
                                             <li>
                                                 <div class="d-flex flex-column flex-xl-row align-items-center py-3">
