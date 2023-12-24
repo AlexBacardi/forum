@@ -26,7 +26,7 @@
                             <div class="col-12">
                                 <div class="d-flex p-2 p-md-3 align-items-center">
                                     <div class="me-3">
-                                        <img class="avatar avatar-32 avatar-md-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
+                                        <img class="avatar avatar-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
                                     </div>
                                     <div>
                                         <a href="#" class="nav-link fs-5">{{ $topic->user->name}}</a>
@@ -54,7 +54,7 @@
                             <form class="pb-2" action="{{ route('categories.topics.comments.store', ['category' => $category->id, 'topic' => $topic->id])}}" method="POST">
                                 @csrf
                                 <label class="fs-5 ms-3 mb-3">Комментарий</label>
-                                <textarea class="form-control mb-3" name="message" cols="30" rows="3"></textarea>
+                                <textarea class="form-control mb-3" name="message" cols="30" rows="6"></textarea>
                                 <button class="btn btn-outline-secondary" type="submit">Ответить</button>
                             </form>
                         </div>
@@ -71,7 +71,7 @@
                                 <div class="col-12">
                                     <div class="d-flex p-2 p-md-2 align-items-center">
                                         <div class="me-3">
-                                            <img class="avatar avatar-32 avatar-md-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('icons/avatar.jpg') }}">
+                                            <img class="avatar avatar-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('icons/avatar.jpg') }}">
                                         </div>
                                         <div>
                                             <a href="#" class="nav-link fs-6">{{ $comment->user->name}}</a>

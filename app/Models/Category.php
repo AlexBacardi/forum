@@ -28,4 +28,5 @@ class Category extends Model
     {
         return $this->topics()->latest('created_at');
     }
+
 }

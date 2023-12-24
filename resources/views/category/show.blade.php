@@ -22,64 +22,60 @@
                     @include('includes.question')
                     <div class="mb-5 shadow">
                         <div class="border rounded-top bg-body-tertiary">
-                            <div class="d-flex p-3">
-                                <div class="col-5 p-2">
-                                    <span class="fw-medium ms-2">{{__('Название темы')}}</span>
+                            <div class="row p-3">
+                                <div class="col-6 col-xl-5 p-2">
+                                    <p class="ms-3 small m-0">{{__('Название темы')}}</p>
                                 </div>
-                                <div class="col-7 p-2">
-                                    <ul class="d-md-flex d-none justify-content-around p-0 list-unstyled text-center mb-0">
-                                        <li>
-                                            {{__('Ответов')}}
-                                        </li>
-                                        <li>
-                                            {{__('Автор')}}
-                                        </li>
-                                        <li class="text-wrap">
-                                            {{__('Послендее сообщение')}}
-                                        </li>
-                                    </ul>
+                                <div class="col-md-3 col-xl-2 d-none d-md-block p-2">
+                                    <p class="text-center small m-0">{{__('Ответов')}}</p>
+                                </div>
+                                <div class="col-6 col-md-3 col-xl-2 p-2">
+                                    <p class="text-center small m-0">{{__('Автор')}}</p>
+                                </div>
+                                <div class="col-xl-3 d-none d-none d-xl-block p-2">
+                                    <p class="text-center small m-0">{{__('Послендее сообщение')}}</p>
                                 </div>
                             </div>
                         </div>
                         @foreach ($topics as $topic)
-                            <div class="border border-top-0">
-                                <div class="row align-items-center p-2">
-                                    <div class="col-12 col-md-5 d-flex align-items-center p-sm-2 p-md-4 me-md-auto">
-                                        <div class="me-auto ms-md-3">
-                                            <a href="{{ route('categories.topics.show', ['category' => $category->id, 'topic' => $topic->id] )}}" class="nav-link fs-5 mb-0">{{ $topic->title}}</a>
-                                            <div class="d-flex align-items-center mt-2 text-muted small">
-                                                <i class="far fa-clock"></i>
-                                                <p class="ms-2 mb-0 fs-6">{{ $topic->created_at->diffForHumans()}}</p>
-                                            </div>
+                            <div class="row align-items-center border border-top-0 m-0">
+                                <div class="col-6 col-xl-5 p-3">
+                                    <div class="row my-2">
+                                        <div class="col-12">
+                                            <a href="{{ route('categories.topics.show', ['category' => $category->id, 'topic' => $topic->id] )}}" class="nav-link fw-medium mb-0 ms-md-2">{{ $topic->title}}</a>
                                         </div>
                                     </div>
-                                    <div class="col-7">
-                                        <ul class="d-md-flex d-none justify-content-around p-0 list-unstyled">
-                                            <li class="py-4">
-                                                {{ $topic->comments->count()}}
-                                            </li>
-                                            <li>
-                                                <div class="d-flex flex-column flex-xl-row align-items-center py-3">
-                                                    <div>
-                                                        <a href="#">{{ $topic->user->name}}</a>
-                                                    </div>
-                                                    <div class="mt-lg-2">
-                                                        <img class="avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div>
-                                                    <div>
-                                                        <p>{{__('2 года, 2 мес назад')}}</p>
-                                                    </div>
-                                                    <div class="text-end">
-                                                        <a href="#">{{__('Eh Jewel')}}</a>
-                                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                                    </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                    <div class="row align-items-center mb-3">
+                                        <div class="col-1 px-1 px-md-0">
+                                            <p class="small text-muted text-end m-0"><i class="far fa-clock"></i></p>
+                                        </div>
+                                        <div class="col-10 px-0 px-md-1 offset-1 offset-md-0">
+                                            <p class="small text-muted m-0">{{ $topic->created_at->diffForHumans()}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 col-xl-2 d-none d-md-block p-2">
+                                    <p class="text-center">{{ $topic->comments->count()}}</p>
+                                </div>
+                                <div class="col-6 col-md-3 col-xl-2 p-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-lg-6 p-0">
+                                            <p class="text-center mb-0"><a href="#">{{ $topic->user->name}}</a></p>
+                                        </div>
+                                        <div class="col-12 col-lg-6 p-0 text-center text-lg-start">
+                                            <img class="avatar avatar-48 bg-light rounded-circle text-white p-1" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-3 d-none d-none d-xl-block p-2">
+                                    <div class="row m-0">
+                                        <div>
+                                            <p class="text-center">{{$lstCmt[$topic->id] ? $lstCmt[$topic->id]->created_at->isoFormat('Do MMMM HH:mm') : ''}}</p>
+                                        </div>
+                                        <div class="text-center">
+                                            <a href="#">{{$lstCmt[$topic->id]->user->name ?? ''}}</a>
+                                            {{-- <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{$lstCmt[$topic->id]->user->avatar ? asset('storage/' . $lstCmt[$topic->id]->user->avatar) : asset('icons/avatar.jpg') }}"> --}}
+                                        </div>
                                     </div>
                                 </div>
                             </div>

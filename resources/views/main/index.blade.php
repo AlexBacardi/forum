@@ -53,9 +53,9 @@
                                             </div>
                                             <div class="me-auto ms-md-3">
                                                 <a href="{{route('categorioes.show', $category->id )}}" class="nav-link">
-                                                    <p class="fs-4 mb-0">{{ $category->title }}</p>
+                                                    <p class="fs-5 fw-medium mb-0">{{ $category->title }}</p>
                                                 </a>
-                                                <p class="mb-0 fs-6">{{ $category->descr }}</p>
+                                                <p class="mb-0 small">{{ $category->descr }}</p>
                                             </div>
                                         </div>
                                         <div class="col-7">
@@ -70,12 +70,12 @@
                                                 <li>
                                                     <div>
                                                         <div>
-                                                            <p>{{ __('2 года, 2 мес назад') }}</p>
+                                                            <p>{{ $lstCmmtCtg[$category->id] ? $lstCmmtCtg[$category->id]->created_at->isoFormat('Do MMMM HH:mm') : '' }}</p>
                                                         </div>
                                                         <div class="text-end">
-                                                            <a href="#">{{ __('Eh Jewel') }}</a>
-                                                            <img class="avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2"
-                                                                src="{{ asset('icons/avatar.jpg') }}">
+                                                            <a href="#">{{ $lstCmmtCtg[$category->id]->user->name ?? ''}}</a>
+                                                            {{-- <img class="avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2"
+                                                                src="{{ asset('icons/avatar.jpg') }}"> --}}
                                                         </div>
                                                     </div>
                                                 </li>

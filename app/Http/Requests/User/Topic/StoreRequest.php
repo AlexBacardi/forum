@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'title' => ['required', 'string', 'min:6', 'max:50'],
-            'content' => ['required', 'string', 'min:10', 'max:300'],
+            'content' => ['required', 'string', 'min:10', 'max:1000'],
             'category_id' => ['required', 'integer',],
         ];
     }
