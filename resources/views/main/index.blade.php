@@ -22,22 +22,18 @@
                     @include('includes.question')
                     <div class="mb-5 shadow">
                         <div class="border rounded-top bg-body-tertiary">
-                            <div class="d-flex p-3">
-                                <div class="col-5 me-auto">
-                                    <span class="fw-medium">{{ __('Форум') }}</span>
+                            <div class="row p-3">
+                                <div class="col-12  col-md-7 col-xl-5 p-2">
+                                    <p class="ms-3 small m-0">{{__('Форум')}}</p>
                                 </div>
-                                <div class="col-7">
-                                    <ul class="d-md-flex d-none justify-content-around p-0 list-unstyled">
-                                        <li>
-                                            {{ __('Темы') }}
-                                        </li>
-                                        <li>
-                                            {{ __('Сообщения') }}
-                                        </li>
-                                        <li class="text-wrap">
-                                            {{ __('Послендее сообщение') }}
-                                        </li>
-                                    </ul>
+                                <div class="col-md-2 col-xl-2 d-none d-md-block p-2">
+                                    <p class="text-center small m-0">{{__('Темы')}}</p>
+                                </div>
+                                <div class="col-md-2 col-xl-2 d-none d-md-block p-2">
+                                    <p class="text-center small m-0">{{__('Сообщения')}}</p>
+                                </div>
+                                <div class="col-xl-3 d-none d-none d-xl-block p-2">
+                                    <p class="text-center small m-0">{{__('Послендее сообщение')}}</p>
                                 </div>
                             </div>
                         </div>
@@ -47,7 +43,7 @@
                             @foreach ($categories as $category)
                                 <div class="border border-top-0">
                                     <div class="row align-items-center p-2">
-                                        <div class="col-12 col-md-5 d-flex align-items-center p-sm-2 p-md-4 me-md-auto">
+                                        <div class="col-12 col-md-7 col-xl-5 d-flex align-items-center p-sm-2 p-md-4">
                                             <div class="mx-3">
                                                 <img src="{{ asset('storage/' . $category->preview_img)}}" alt="">
                                             </div>
@@ -58,28 +54,28 @@
                                                 <p class="mb-0 small">{{ $category->descr }}</p>
                                             </div>
                                         </div>
-                                        <div class="col-7">
-                                            <ul
-                                                class="d-md-flex d-none justify-content-around align-items-center p-0 list-unstyled">
-                                                <li>
-                                                    {{ $category->topics->count() }}
-                                                </li>
-                                                <li>
-                                                    {{ $cntCommetns[$category->id]}}
-                                                </li>
-                                                <li>
+                                        <div class="col-md-2 col-xl-2 d-none d-md-block p-2">
+                                            <p class="text-center small m-0">{{ $category->topics->count() }}</p>
+                                        </div>
+                                        <div class="col-md-2 col-xl-2 d-none d-md-block p-2">
+                                            <p class="text-center small m-0">{{ $cntCommetns[$category->id] }}</p>
+                                        </div>
+                                        <div class="col-xl-3 d-none d-none d-xl-block p-2">
+                                            <div class="row m-0">
+                                                @if (!is_null($lstCmmtCtg[$category->id]))
                                                     <div>
-                                                        <div>
-                                                            <p>{{ $lstCmmtCtg[$category->id] ? $lstCmmtCtg[$category->id]->created_at->isoFormat('Do MMMM HH:mm') : '' }}</p>
-                                                        </div>
-                                                        <div class="text-end">
-                                                            <a href="#">{{ $lstCmmtCtg[$category->id]->user->name ?? ''}}</a>
-                                                            {{-- <img class="avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2"
-                                                                src="{{ asset('icons/avatar.jpg') }}"> --}}
-                                                        </div>
+                                                        <p class="text-center">{{$lstCmmtCtg[$category->id]->created_at->isoFormat('Do MMMM HH:mm') }}</p>
                                                     </div>
-                                                </li>
-                                            </ul>
+                                                    <div class="text-center">
+                                                        <a href="{{ route('users.info', $lstCmmtCtg[$category->id]->user->id )}}">{{ $lstCmmtCtg[$category->id]->user->name }}</a>
+                                                        <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{ $lstCmmtCtg[$category->id]->user->avatar ? asset('storage/' . $lstCmmtCtg[$category->id]->user->avatar) : asset('icons/avatar.jpg') }}">
+                                                    </div>
+                                                @else
+                                                    <div>
+                                                        <p class="text-center">-----</p>
+                                                    </div>
+                                                @endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

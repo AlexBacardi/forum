@@ -12,19 +12,19 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::all();
-        $cntCommetns = $this->cntComment($categories);
+        $cntCommetns = $this->getCntComment($categories);
         $lstCmmtCtg = $this->getLastCommentByCategory($categories);
         return view('main.index', compact('categories', 'cntCommetns', 'lstCmmtCtg'));
     }
 
     public function show(Category $category)
     {
-        $topics = $category->topicsOrderDesc;
-        $lstCmt = $this->lastComment($category->topics);
+        $topics = $category->topicsOrderDesc()->paginate(10);
+        $lstCmt = $this->getLastComment($category->topics);
         return view('category.show', compact('category', 'topics', 'lstCmt'));
     }
 
-    private function cntComment($categories)
+    private function getCntComment($categories)
     {
         $data = [];
         foreach($categories as $category){
@@ -36,7 +36,7 @@ class CategoryController extends Controller
         return $data;
     }
 
-    private function lastComment($categories)
+    private function getLastComment($categories)
     {
         $data = [];
         foreach($categories as $topic){

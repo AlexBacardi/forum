@@ -1,4 +1,7 @@
 @extends('layouts.main')
+@push('cssMain')
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+@endpush
 @section('title', 'темы форума: ' . $category->title)
 @section('content')
     <section class="my-5 bg-body-tertiary">
@@ -60,7 +63,7 @@
                                 <div class="col-6 col-md-3 col-xl-2 p-2">
                                     <div class="row align-items-center">
                                         <div class="col-12 col-lg-6 p-0">
-                                            <p class="text-center mb-0"><a href="#">{{ $topic->user->name}}</a></p>
+                                            <p class="text-center mb-0"><a href="{{ route('users.info', $topic->user->id )}}">{{ $topic->user->name}}</a></p>
                                         </div>
                                         <div class="col-12 col-lg-6 p-0 text-center text-lg-start">
                                             <img class="avatar avatar-48 bg-light rounded-circle text-white p-1" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
@@ -69,17 +72,28 @@
                                 </div>
                                 <div class="col-xl-3 d-none d-none d-xl-block p-2">
                                     <div class="row m-0">
-                                        <div>
-                                            <p class="text-center">{{$lstCmt[$topic->id] ? $lstCmt[$topic->id]->created_at->isoFormat('Do MMMM HH:mm') : ''}}</p>
-                                        </div>
-                                        <div class="text-center">
-                                            <a href="#">{{$lstCmt[$topic->id]->user->name ?? ''}}</a>
-                                            {{-- <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{$lstCmt[$topic->id]->user->avatar ? asset('storage/' . $lstCmt[$topic->id]->user->avatar) : asset('icons/avatar.jpg') }}"> --}}
-                                        </div>
+                                        @if (!is_null($lstCmt[$topic->id]))
+                                            <div>
+                                                <p class="text-center">{{$lstCmt[$topic->id]->created_at->isoFormat('Do MMMM HH:mm') }}</p>
+                                            </div>
+                                            <div class="text-center">
+                                                <a href="{{ route('users.info', $lstCmt[$topic->id]->user->id )}}">{{ $lstCmt[$topic->id]->user->name }}</a>
+                                                <img class="avatar avatar-32 bg-light rounded-circle text-white p-1 ms-2" src="{{ $lstCmt[$topic->id]->user->avatar ? asset('storage/' . $lstCmt[$topic->id]->user->avatar) : asset('icons/avatar.jpg') }}">
+                                            </div>
+                                        @else
+                                            <div>
+                                                <p class="text-center">-----</p>
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                         @endforeach
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            {{ $topics->links() }}
+                        </div>
                     </div>
                 </div>
                 <div class="col-lg-3 d-none d-lg-block">

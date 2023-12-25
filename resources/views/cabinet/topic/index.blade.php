@@ -38,12 +38,12 @@
                             <div class="border border-top-0">
                                 <div class="d-flex p-3">
                                     <div class="col-12 col-md-7 p-2">
-                                        <a href="#" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                        <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
                                     </div>
                                     <div class="col-7 col-md-5 p-2">
                                         <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
                                             <li class="me-auto">
-                                                {{ __('10') }}
+                                                {{ $topic->comments->count() }}
                                             </li>
                                             <li class="text-wrap w-50 text-{{$topic->is_published? 'success' : 'danger'}}">
                                                 {{ $isPublished[$topic->is_published] }}

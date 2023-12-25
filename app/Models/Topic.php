@@ -58,4 +58,5 @@ class Topic extends Model
 
         return $this->comments->last();
     }
+
 }
