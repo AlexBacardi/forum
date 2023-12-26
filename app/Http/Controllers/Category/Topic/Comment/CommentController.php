@@ -17,6 +17,7 @@ class CommentController extends Controller
         $data['user_id'] = auth()->user()->id;
         $data['topic_id'] = $topic->id;
         Comment::create($data);
+        $topic->touch();
         return redirect()->route('categories.topics.show', ['category' => $category->id, 'topic' => $topic->id]);
     }
 }

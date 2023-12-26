@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Category;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Comment;
-use Illuminate\Http\Request;
+use App\Models\Topic;
+use App\Models\User;
 
 class CategoryController extends Controller
 {
@@ -14,14 +15,16 @@ class CategoryController extends Controller
         $categories = Category::all();
         $cntCommetns = $this->getCntComment($categories);
         $lstCmmtCtg = $this->getLastCommentByCategory($categories);
-        return view('main.index', compact('categories', 'cntCommetns', 'lstCmmtCtg'));
+        $popularTopics = Topic::withCount('comments')->orderBy('comments_count', 'desc')->get()->take(6);
+        return view('main.index', compact('categories', 'cntCommetns', 'lstCmmtCtg', 'popularTopics'));
     }
 
     public function show(Category $category)
     {
         $topics = $category->topicsOrderDesc()->paginate(10);
         $lstCmt = $this->getLastComment($category->topics);
-        return view('category.show', compact('category', 'topics', 'lstCmt'));
+        $cntCommentUsers = User::withCount('comments')->orderBy('comments_count', 'desc')->get()->take(5);
+        return view('category.show', compact('category', 'topics', 'lstCmt', 'cntCommentUsers'));
     }
 
     private function getCntComment($categories)

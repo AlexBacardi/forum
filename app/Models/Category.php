@@ -26,7 +26,7 @@ class Category extends Model
 
     public function topicsOrderDesc()
     {
-        return $this->topics()->latest('created_at');
+        return $this->topics()->latest('updated_at');
     }
 
 }

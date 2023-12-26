@@ -88,33 +88,17 @@
                         @include('includes.info')
                         <hr>
                         <div class="ticket_widget">
-                            <h2 class="h4 my-4">{{ __('Популярные темы') }}</h2>
-                            <ul class="list-unstyled">
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 1') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('40') }}</span>
-                                </li>
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 2') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('23') }}</span>
-                                </li>
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 3') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('56') }}</span>
-                                </li>
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 4') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('155') }}</span>
-                                </li>
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 5') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('62') }}</span>
-                                </li>
-                                <li class="border-bottom py-3 d-flex justify-content-around">
-                                    <a href="#" class="nav-link">{{ __('Популярная тема № 6') }}</a>
-                                    <span class="badge text-bg-secondary">{{ __('33') }}</span>
-                                </li>
-                            </ul>
+                            <h2 class="h5 mt-5 bg-body-tertiary p-3 text-center">{{ __('Популярные темы') }}</h2>
+                            @foreach ($popularTopics as $topic)
+                                <div class="row border-bottom py-3 align-items-center">
+                                    <div class="col-lg-10">
+                                        <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium">{{ $topic->title }}</a>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <p class="m-0"><span class="badge text-bg-secondary">{{ $topic->comments_count }}</span></p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>

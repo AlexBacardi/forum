@@ -101,65 +101,30 @@
                         @include('includes.info')
                         <hr>
                         <div class="ticket_widget">
-                            <div class="border rounded-top bg-body-tertiary">
+                            <div class="bg-body-tertiary">
                                 <div class="row p-3">
-                                    <div class="col-8 col-lg-7 p-lg-0 ms-lg-1">
-                                        <p class="fs-6 fw-medium mb-0 text-lg-center">{{__('Больше всего ответов')}}</p>
-                                    </div>
-                                    <div class="col-4 p-lg-0">
-                                        <p class="fs-6 fw-medium mb-0 text-xl-end">{{__('за 30 дн')}}</p>
+                                    <div class="col-lg-12 p-lg-0 ms-lg-1">
+                                        <p class="fs-6 fw-medium mb-0 text-lg-center">{{__('Топ-5 пользователей давших больше всего ответов')}}</p>
                                     </div>
                                 </div>
                             </div>
-                            <div class="border rounded-bottom p-3">
-                                <ul class="list-unstyled">
-                                    <li class="py-3 border-bottom">
-                                        <div class="row ms-2 align-items-center">
-                                            <img class="col-1 avatar avatar-24 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                            <a href="#" class="col-8">{{__('Eh Jewel')}}</a>
-                                            <div class="col-2 p-0">
-                                                <span class="badge text-bg-secondary">{{__('40')}}</span>
+                            @foreach ($cntCommentUsers as $user)
+                                <div class="row border-bottom py-3 align-items-center">
+                                    <div class="col-lg-10">
+                                        <div class="row align-items-center">
+                                            <div class="col-3 offset-1">
+                                                <img class="col-1 avatar avatar-48 bg-light rounded-circle text-white p-1 ms-2" src="{{$user->avatar ? asset('storage/' . $user->avatar) : asset('icons/avatar.jpg') }}">
+                                            </div>
+                                            <div class="col-8">
+                                                <a href="{{ route('users.info', $user->id)}}" class="fw-medium">{{ $user->name }}</a>
                                             </div>
                                         </div>
-                                    </li>
-                                    <li class="py-3 border-bottom">
-                                        <div class="row ms-2 align-items-center">
-                                            <img class="col-1 avatar avatar-24 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                            <a href="#" class="col-8">{{__('Eh Jewel')}}</a>
-                                            <div class="col-2 p-0">
-                                                <span class="badge text-bg-secondary">{{__('40')}}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="py-3 border-bottom">
-                                        <div class="row ms-2 align-items-center">
-                                            <img class="col-1 avatar avatar-24 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                            <a href="#" class="col-8">{{__('Eh Jewel')}}</a>
-                                            <div class="col-2 p-0">
-                                                <span class="badge text-bg-secondary">{{__('40')}}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="py-3 border-bottom">
-                                        <div class="row ms-2 align-items-center">
-                                            <img class="col-1 avatar avatar-24 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                            <a href="#" class="col-8">{{__('Eh Jewel')}}</a>
-                                            <div class="col-2 p-0">
-                                                <span class="badge text-bg-secondary">{{__('40')}}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="py-3 border-bottom">
-                                        <div class="row ms-2 align-items-center">
-                                            <img class="col-1 avatar avatar-24 bg-light rounded-circle text-white p-1 ms-2" src="{{asset('icon/avatar.jpg')}}">
-                                            <a href="#" class="col-8">{{__('Eh Jewel')}}</a>
-                                            <div class="col-2 p-0">
-                                                <span class="badge text-bg-secondary">{{__('40')}}</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <p class="m-0"><span class="badge text-bg-secondary">{{ $user->comments_count }}</span></p>
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
