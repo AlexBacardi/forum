@@ -49,16 +49,16 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row mb-5">
-                        <div class="col-12">
-                            <form class="pb-2" action="{{ route('categories.topics.comments.store', ['category' => $category->id, 'topic' => $topic->id])}}" method="POST">
-                                @csrf
-                                <label class="fs-5 ms-3 mb-3">Комментарий</label>
-                                <textarea class="form-control mb-3" name="message" cols="30" rows="6"></textarea>
-                                <button class="btn btn-outline-secondary" type="submit">Ответить</button>
-                            </form>
+                        <div class="row mb-5">
+                            <div class="col-12">
+                                <form class="pb-2" action="{{ route('categories.topics.comments.store', ['category' => $category->id, 'topic' => $topic->id])}}" method="POST">
+                                    @csrf
+                                    <label class="fs-5 ms-3 mb-3">Комментарий</label>
+                                    <textarea class="form-control mb-3" name="message" cols="30" rows="6"></textarea>
+                                    <button class="btn btn-outline-secondary" type="submit">Ответить</button>
+                                </form>
+                            </div>
                         </div>
-                    </div>
                     <div class="row mt-5">
                         <div class="col-12">
                             <p class="fs-5 mb-5 fw-medium">Все ответы</p>

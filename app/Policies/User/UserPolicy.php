@@ -20,7 +20,9 @@ class UserPolicy
      */
     public function view(User $user, User $model)
     {
-        //
+        return $user->id === $model->id ?
+            Response::allow() :
+            Response::denyWithStatus(404);
     }
 
     /**

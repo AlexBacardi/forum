@@ -29,33 +29,62 @@
                     </div>
                 </div>
             </div>
-            @if (count($topics) == 0)
-                <h4 class="mt-3">Вы не создали не одной темы </h4>
-            @else
-                @foreach ($topics as $topic)
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="border border-top-0">
-                                <div class="d-flex p-3">
-                                    <div class="col-12 col-md-7 p-2">
-                                        <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
-                                    </div>
-                                    <div class="col-7 col-md-5 p-2">
-                                        <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                            <li class="me-auto">
-                                                {{ $topic->comments->count() }}
-                                            </li>
-                                            <li class="text-wrap w-50 text-{{$topic->is_published? 'success' : 'danger'}}">
-                                                {{ $isPublished[$topic->is_published] }}
-                                            </li>
-                                        </ul>
+            @can('view', $user)
+                @if (count($topics) == 0)
+                    <h4 class="mt-3">Вы не создали не одной темы </h4>
+                @else
+                    @foreach ($topics as $topic)
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="border border-top-0">
+                                    <div class="d-flex p-3">
+                                        <div class="col-12 col-md-7 p-2">
+                                            <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                        </div>
+                                        <div class="col-7 col-md-5 p-2">
+                                            <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
+                                                <li class="me-auto">
+                                                    {{ $topic->comments->count() }}
+                                                </li>
+                                                <li class="text-wrap w-50 text-{{$topic->is_published? 'success' : 'danger'}}">
+                                                    {{ $isPublished[$topic->is_published] }}
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
-            @endif
+                    @endforeach
+                @endif
+            @else
+                @if (count($topics) == 0)
+                    <h4 class="mt-3">Не создано не одной темы</h4>
+                @else
+                    @foreach ($topics as $topic)
+                        @if ($topic->is_published)
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="border border-top-0">
+                                        <div class="d-flex p-3">
+                                            <div class="col-12 col-md-7 p-2">
+                                                <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                            </div>
+                                            <div class="col-7 col-md-5 p-2">
+                                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
+                                                    <li class="me-auto">
+                                                        {{ $topic->comments->count() }}
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
+                @endif
+            @endcan
         </div>
     </div>
 @endsection

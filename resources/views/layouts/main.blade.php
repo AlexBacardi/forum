@@ -16,6 +16,7 @@
             @include('includes.nav')
             @if (Route::is('register') or Route::is('login') or Route::is('password.request'))
             @else
+                @include('includes.error')
                 @include('includes.search')
             @endif
             @yield('content')
