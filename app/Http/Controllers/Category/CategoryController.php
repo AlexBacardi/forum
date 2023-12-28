@@ -21,7 +21,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $topics = $category->topicsOrderDesc()->paginate(10);
+        $topics = $category->topicsOrderDesc()->where('is_published', 1)->paginate(10);
         $lstCmt = $this->getLastComment($category->topics);
         $cntCommentUsers = User::withCount('comments')->orderBy('comments_count', 'desc')->get()->take(5);
         return view('category.show', compact('category', 'topics', 'lstCmt', 'cntCommentUsers'));

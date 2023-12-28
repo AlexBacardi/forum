@@ -27,6 +27,7 @@ class Topic extends Model
 
     protected $casts = [
         'published_at' => 'datetime',
+        'is_published' => 'boolean',
     ];
 
 

@@ -8,28 +8,28 @@
                     <p class="fs-4 fw-medium ms-2 mb-0">{{ __('Созданыне темы') }}</p>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <div class="border rounded-top bg-body-tertiary">
-                        <div class="d-flex p-3">
-                            <div class="col-12 col-md-7 p-2">
-                                <span class="fw-medium ms-2">{{ __('Название темы') }}</span>
-                            </div>
-                            <div class="col-7 col-md-5 p-2">
-                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                    <li class="me-auto">
-                                        {{ __('Ответов') }}
-                                    </li>
-                                    <li class="text-center w-50">
-                                        {{ __('Статус') }}
-                                    </li>
-                                </ul>
+            @can('view', $user)
+                <div class="row">
+                    <div class="col-12">
+                        <div class="border rounded-top bg-body-tertiary">
+                            <div class="d-flex p-3">
+                                <div class="col-12 col-md-7 p-2">
+                                    <span class="small ms-2">{{ __('Название темы') }}</span>
+                                </div>
+                                <div class="col-7 col-md-5 p-2">
+                                    <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
+                                        <li class="me-auto">
+                                            {{ __('Ответов') }}
+                                        </li>
+                                        <li class="text-center w-50">
+                                            {{ __('Статус') }}
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            @can('view', $user)
                 @if (count($topics) == 0)
                     <h4 class="mt-3">Вы не создали не одной темы </h4>
                 @else
@@ -39,14 +39,16 @@
                                 <div class="border border-top-0">
                                     <div class="d-flex p-3">
                                         <div class="col-12 col-md-7 p-2">
-                                            <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                            <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id]) }}"
+                                                class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
                                         </div>
                                         <div class="col-7 col-md-5 p-2">
                                             <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
                                                 <li class="me-auto">
                                                     {{ $topic->comments->count() }}
                                                 </li>
-                                                <li class="text-wrap w-50 text-{{$topic->is_published? 'success' : 'danger'}}">
+                                                <li
+                                                    class="text-wrap w-50 text-{{ $topic->is_published ? 'success' : 'danger' }}">
                                                     {{ $isPublished[$topic->is_published] }}
                                                 </li>
                                             </ul>
@@ -58,32 +60,47 @@
                     @endforeach
                 @endif
             @else
-                @if (count($topics) == 0)
-                    <h4 class="mt-3">Не создано не одной темы</h4>
-                @else
-                    @foreach ($topics as $topic)
-                        @if ($topic->is_published)
-                            <div class="row">
-                                <div class="col-12">
-                                    <div class="border border-top-0">
-                                        <div class="d-flex p-3">
-                                            <div class="col-12 col-md-7 p-2">
-                                                <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id])}}" class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
-                                            </div>
-                                            <div class="col-7 col-md-5 p-2">
-                                                <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
-                                                    <li class="me-auto">
-                                                        {{ $topic->comments->count() }}
-                                                    </li>
-                                                </ul>
-                                            </div>
+                <div class="row">
+                    <div class="col-12">
+                        <div class="border rounded-top bg-body-tertiary">
+                            <div class="d-flex p-3">
+                                <div class="col-12 col-md-10 p-2">
+                                    <span class="small  ms-2">{{ __('Название темы') }}</span>
+                                </div>
+                                <div class="col-7 col-md-2 p-2">
+                                    <ul class="d-md-flex d-none p-0 list-unstyled justify-content-center mb-0">
+                                        <li>
+                                            {{ __('Ответов') }}
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @foreach ($topics as $topic)
+                    @if ($topic->is_published)
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="border border-top-0">
+                                    <div class="d-flex p-3">
+                                        <div class="col-12 col-md-10 p-2">
+                                            <a href="{{ route('categories.topics.show', ['category' => $topic->category_id, 'topic' => $topic->id]) }}"
+                                                class="nav-link fw-medium ms-2">{{ $topic->title }}</a>
+                                        </div>
+                                        <div class="col-7 col-md-2 p-2">
+                                            <ul class="d-md-flex d-none p-0 list-unstyled text-center mb-0">
+                                                <li class="m-auto">
+                                                    {{ $topic->comments->count() }}
+                                                </li>
+                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        @endif
-                    @endforeach
-                @endif
+                        </div>
+                    @endif
+                @endforeach
             @endcan
         </div>
     </div>
