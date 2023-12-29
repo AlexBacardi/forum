@@ -12,7 +12,6 @@ class TopicController extends Controller
 {
     public function show(Category $category, Topic $topic)
     {
-        $this->authorize('view', auth()->user());
         $comments  = $topic->comments()->latest('created_at')->get();
         $popularTopics = Topic::withCount('comments')->orderBy('comments_count', 'desc')->get()->take(6);
         return view('category.topic.show', compact('category', 'topic', 'comments', 'popularTopics'));

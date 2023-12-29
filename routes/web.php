@@ -22,7 +22,7 @@ Route::prefix('categories')->controller(CategoryController::class)->group(functi
 
     Route::get('/{category}', 'show')->name('categorioes.show');
 
-    Route::prefix('{category}/topics')->controller(TopicController::class)->group(function() {
+    Route::prefix('{category}/topics')->middleware('chekTopic')->controller(TopicController::class)->group(function() {
 
         Route::get('/{topic}', 'show')->name('categories.topics.show')->scopeBindings();
 

@@ -29,7 +29,7 @@
                                         <img class="avatar avatar-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$topic->user->avatar ? asset('storage/' . $topic->user->avatar) : asset('icons/avatar.jpg') }}">
                                     </div>
                                     <div>
-                                        <a href="#" class="nav-link fs-5">{{ $topic->user->name}}</a>
+                                        <a href="{{ route('users.info', $topic->user->id )}}" class="nav-link fs-5">{{ $topic->user->name}}</a>
                                         <div class=" d-flex lign-items-center mt-1 mt-md-2">
                                             <div class="ms-1">
                                                 <i class="far fa-calendar" style="color: #b8b799;"></i>
@@ -74,7 +74,7 @@
                                             <img class="avatar avatar-64 bg-light rounded-circle text-white p-1 ms-2" src="{{$comment->user->avatar ? asset('storage/' . $comment->user->avatar) : asset('icons/avatar.jpg') }}">
                                         </div>
                                         <div>
-                                            <a href="#" class="nav-link fs-6">{{ $comment->user->name}}</a>
+                                            <a href="{{ route('users.info', $comment->user->id)}}" class="nav-link fs-6">{{ $comment->user->name}}</a>
                                             <div class=" d-flex lign-items-center mt-1 mt-md-2">
                                                 <div class="ms-1">
                                                     <i class="far fa-calendar" style="color: #b8b799;"></i>
