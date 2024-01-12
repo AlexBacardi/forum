@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\Category\CategoryController;
+use App\Http\Controllers\Admin\Topic\AdminTopicController;
 use App\Http\Controllers\Admin\User\AdminUserController;
 use Illuminate\Support\Facades\Route;
 
-Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminController::class)->group(function() {
+Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminController::class)->group(function () {
 
     Route::get('/', 'index')->name('admin.index');
 
-    Route::prefix('categories')->controller(CategoryController::class)->group(function(){
+    Route::prefix('categories')->controller(CategoryController::class)->group(function () {
 
         Route::get('/', 'index')->name('admin.categories.index');
 
@@ -24,10 +25,9 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminControlle
         Route::patch('/{category}', 'update')->name('admin.categories.update');
 
         Route::delete('/{category}', 'delete')->name('admin.categories.delete');
-
     });
 
-    Route::prefix('users')->controller(AdminUserController::class)->group(function() {
+    Route::prefix('users')->controller(AdminUserController::class)->group(function () {
 
         Route::get('/', 'index')->name('admin.users.index');
 
@@ -42,6 +42,11 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminControlle
         Route::patch('/{user}', 'update')->name('admin.users.update');
 
         Route::delete('/{user}', 'delete')->name('admin.users.delete');
+    });
 
+    Route::prefix('topics')->controller(AdminTopicController::class)->group(function () {
+
+        Route::get('/', 'index')->name('admin.topics.index');
+        
     });
 });
