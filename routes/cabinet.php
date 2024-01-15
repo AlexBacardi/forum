@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Cabinet\Comment\CommentController;
 use App\Http\Controllers\Cabinet\ProfileController;
 use App\Http\Controllers\Cabinet\Topic\TopicController;
 use Illuminate\Support\Facades\Route;
@@ -20,5 +21,11 @@ Route::prefix('cabinet')->controller(ProfileController::class)->middleware('auth
         Route::get('/create', 'create')->name('users.topics.create');
 
         Route::post('/', 'store')->name('users.topics.store');
+    });
+
+    Route::prefix('{user}/comments')->controller(CommentController::class)->group(function () {
+
+        Route::get('/', 'index')->name('users.comments.index');
+        
     });
 });

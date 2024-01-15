@@ -23,6 +23,7 @@ class Topic extends Model
         'category_id',
         'user_id',
         'is_published',
+        'published_at',
     ];
 
     protected $casts = [

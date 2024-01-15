@@ -21,8 +21,8 @@
                 <div class="col-sm-12 col-md-4 mb-3">
                     <div class="border rounded text-center py-4">
                         <img src="{{ asset('icons/p-icon-3.png') }}" alt="" style="max-height: 62px;">
-                        <p class="fs-5 fw-medium mt-2">{{ __('Ответы') }}</p>
-                        <span class="badge bg-secondary fs-6">{{ __('150') }}</span>
+                        <p class="fs-5 fw-medium mt-2"><a href="{{ route('users.comments.index', $user->id )}}" class="link-underline link-underline-opacity-0 text-dark">{{ __('Ответы') }}</a></p>
+                        <span class="badge bg-secondary fs-6">{{ $data['cntComment'] }}</span>
                     </div>
                 </div>
             </div>

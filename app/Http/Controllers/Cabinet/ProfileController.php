@@ -16,6 +16,7 @@ class ProfileController extends Controller
     {
         $roles = User::getRoles();
         $data['cntTopics'] = $user->topics()->count();
+        $data['cntComment'] = $user->comments()->count();
         $gender = ['male' => 'Мужской', 'female' => 'Женский'];
         return view('cabinet.info', compact('user', 'roles', 'gender', 'data'));
     }

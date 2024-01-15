@@ -47,6 +47,8 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->controller(AdminControlle
     Route::prefix('topics')->controller(AdminTopicController::class)->group(function () {
 
         Route::get('/', 'index')->name('admin.topics.index');
-        
+
+        Route::patch('/{topic}', 'update')->name('admin.topics.update');
+
     });
 });
