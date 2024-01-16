@@ -4,7 +4,7 @@ use App\Http\Controllers\Cabinet\Comment\CommentController;
 use App\Http\Controllers\Cabinet\ProfileController;
 use App\Http\Controllers\Cabinet\Topic\TopicController;
 use Illuminate\Support\Facades\Route;
-
+use Psy\Command\EditCommand;
 
 Route::prefix('cabinet')->controller(ProfileController::class)->middleware('auth')->group(function () {
 
@@ -25,7 +25,14 @@ Route::prefix('cabinet')->controller(ProfileController::class)->middleware('auth
 
     Route::prefix('{user}/comments')->controller(CommentController::class)->group(function () {
 
-        Route::get('/', 'index')->name('users.comments.index');
-        
+        Route::get('/', 'index')->name('users.comments.index')->withoutMiddleware('auth');
+
+        Route::get('/{comment}/edit', 'edit')->name('users.comments.edit');
+
+        Route::patch('/{comment}', 'update')->name('users.comments.update');
+
+        Route::delete('/{comment}', 'delete')->name('users.comments.delete')->scopeBindings();
+
+
     });
 });

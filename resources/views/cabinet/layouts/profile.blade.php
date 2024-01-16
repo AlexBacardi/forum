@@ -1,3 +1,6 @@
+@push('cssMain')
+    <link rel="stylesheet" href="{{asset('css/main.css')}}">
+@endpush
 @extends('layouts.main')
 @section('content')
     <section class="my-5 bg-body-tertiary">
